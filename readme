@@ -1,448 +1,229 @@
 1.
 
-# Prompt user to enter data
-user_input = input("Enter numbers separated by commas: ")
+print " Enter string: "
+str= gets.chomp
 
-# Convert the input string to a list of integers
-numbers = [int(num) for num in user_input.split(',')]
+print "Enter n: "
+n = gets.chomp.to_i   
 
-# Calculate the number of elements
-count = len(numbers)
-
-# Calculate the mean (average)
-sum_of_numbers = sum(numbers)
-mean_value = sum_of_numbers / count
-
-# Sort the list for median calculation
-sorted_numbers = sorted(numbers)
-
-# Calculate the median
-if count % 2 == 0:
-    median_value = (sorted_numbers[count // 2 - 1] + sorted_numbers[count // 2]) / 2
-else:
-    median_value = sorted_numbers[count // 2]
-
-# Calculate the mode
-frequency_dict = {}
-highest_frequency = 0
-
-for num in numbers:
-    if num in frequency_dict:
-        frequency_dict[num] += 1
-    else:
-        frequency_dict[num] = 1
-    if frequency_dict[num] > highest_frequency:
-        highest_frequency = frequency_dict[num]
-
-# Get all numbers with the highest frequency
-modes = [num for num, freq in frequency_dict.items() if freq == highest_frequency]
-
-# Calculate variance
-squared_diff_sum = sum((num - mean_value) ** 2 for num in numbers)
-variance_value = squared_diff_sum / count
-
-# Calculate standard deviation
-std_deviation = variance_value ** 0.5
-
-# Display results
-print(f"Mean = {mean_value}")
-print(f"Median = {median_value}")
-print(f"Mode = {modes if len(modes) < count else 'No mode (all values are unique)'}")
-print(f"Variance = {variance_value}")
-print(f"Standard Deviation = {std_deviation}")
+for i in 1..n  
+  if n!=0
+    print str ," " 
+  end
+end   
 
 
 2.
 
 
+print "Enter radius of the circle: "
+n= gets.chomp.to_i  
 
-#1. Statistics
-
-import statistics
-# Input data from user
-
-data=input("Enter data separated by comma:")
-data=[int(x) for x in data.split(',')]
-
-# Compute Mean
-mean=statistics.mean(data)
-# Compute Median
-median=statistics.median(data)
-# Compute Mode
-mode=statistics.mode(data)
-# Compute Standard Deviation
-std_dev=statistics.stdev(data)
-# Compute Variance
-variance=statistics.variance(data)
-# Output results
-print(f"Mean={mean}")
-print(f"Median={median}")
-print(f"Mode={mode}")
-print(f"Standard Deviation={std_dev}")
-print(f"Variance={variance}")
-
-
-#2. Math
-
-import math
-x=int(input("Enter a number:"))
-result1=math.ceil(x)
-result2=math.factorial(x)
-result3=math.exp(x)
-result4=math.sqrt(x)
-result5=math.floor(x)
-n1=int(input("Enter number1:"))
-n2=int(input("Enter number2:"))
-result6=math.gcd(n1,n2)
-result7=math.pow(n1,n2)
-angle=int(input("Enter an angle:"))
-a=math.radians(angle)
-result8=math.sin(a)
-result9=math.cos(a)
-result10=math.tan(a)
-print(f"Using math.ceil({x}): {result1}")
-print(f"Using math.factorial({x}):{result2}")
-print(f"Using math.exp({x}):{result3}")
-print(f"Using math.sqrt({x}):{result4}")
-print(f"Using math.floor({x}):{result5}")
-print(f"Using math.gcd({n1},{n2}):{result6}")
-print(f"Using math.pow({n1},{n2}):{result7}")
-print(f"Using math.sin({angle}):{result8}")
-print(f"Using math.cos({angle}):{result9}")
-print(f"Using math.tan({angle}):{result10:.15f}")
-
-
-#3. numpy
-
-
-import numpy as np
-# Get number of rows and columns from user
-rows=int(input("Enter number of rows:"))
-cols=int(input("Enter number of columns:"))
-# Get array elements from user
-elements=list(map(float, input(f"Enter {rows*cols} elements separated by spaces:").split()))
-# Create an array from user input
-user_array=np.array(elements).reshape(rows,cols)
-# Create an array of ones and zeros
-ones_array=np.ones((rows, cols))
-zeros_array=np.zeros((rows, cols))
-# Transpose the user array
-transposed_array=np.transpose(user_array)
-# Reshape the user array (to a flat array and back to the original shape for demonstration)
-reshaped_array = user_array.reshape(rows * cols)
-min_value=np.min(elements)
-max_value=np.max(elements)
-# Display the results
-print("User Array:\n",user_array)
-print("Ones Array:\n",ones_array)
-print("Zeros Array:\n",zeros_array)
-print("Transposed Array:\n",transposed_array)
-print("Reshaped Array (flattened):\n",reshaped_array)
-print("Minimum Value:",min_value)
-print("Maximum Value:",max_value)
-
-
-4. 
-
-
-
-# from scipy import linalg
-# import numpy as np
-# from scipy import special
-# from scipy import constants
-# # Print constants
-# print("Seconds in a minute:",constants.minute) # 60.0
-# print("Seconds in an hour:",constants.hour) # 3600.0
-# print("Length of an inch in meters:",constants.inch) # 0.0254
-# print("Volume of a liter in cubic meters:",constants.liter) # 0.001
-# # Dynamic input for exponentiation
-# exp_input = float(input("Enter the exponent for 10^x:"))
-# print(f"10^{exp_input} =",special.exp10(exp_input))
-# # Dynamic input for angles in degrees
-# angle=float(input("Enter an angle for sine and cosine(in degrees):"))
-# #Calculate sine and cosine of the input angles
-# print(f"sin({angle} degrees):",special.sindg(angle))
-# print(f"cos({angle} degrees):",special.cosdg(angle))
-# # Dynamic input for matrix
-# rows = int(input("Enter the number of rows for the matrix:"))
-# cols = int(input("Enter the number of columns for the matrix:"))
-# mat = list(map(float, input(f"Enter {rows * cols} elements separated by spaces:").split()))
-# # Convert the flat list into a 2D NumPy array
-# mat=np.array(mat).reshape((rows, cols))
-# # Calculate the determinant if the matrix is square
-# if rows == cols:
-# 	x = linalg.det(mat)
-# 	print(f'Determinant of the matrix\n{mat}\n is: {x}')
-# else:
-# 	print("Determinant can only be calculated for square matrices.")
-
-3.  
-# #1. pandas
-
-import pandas
-df=pandas.read_csv('students.csv')
-print(df)
-print(df.loc[[0,1]])
-print(df.head())
-print(df.tail())
-print(df.isnull())
-print(df.info())
-
-
-
-#2. MatPlotLib
-
-import matplotlib.pyplot as plt
-import numpy as np
-# Taking user inputs for x and y coordinates
-x_input = input("Enter the x coordinates separated by spaces: ")
-y_input = input("Enter the y coordinates separated by spaces: ")
-# Splitting the input string into a list of strings, then converting them to float
-x = np.array([float(i) for i in x_input.split()])
-y = np.array([float(i) for i in y_input.split()])
-# Checking if the number of x and y coordinates match
-if len(x) != len(y):
-	print("Error: The number of x and y coordinates must be the same.")
-else:
-	plt.plot(x, y, marker='o') # Plot with markers at data points
-	plt.xlabel('X-axis')
-	plt.ylabel('Y-axis')
-	plt.title('User Input Plot')
-	plt.grid(True) # Adding a grid for better visualization
-	plt.show()
-
-4. # import pandas as pd
-# import matplotlib.pyplot as plt
-# from sklearn.model_selection import train_test_split
-# from sklearn.linear_model import LinearRegression
-# from sklearn.metrics import mean_absolute_error,mean_squared_error,r2_score
-
-# #Load the data from the CSV file
-# data = pd.read_csv('salary_data.csv')
-# x= data[['age']] # Independent variable
-# y = data['salary'] # Dependent variable
-
-# #Split the data into training and testing sets
-# x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2,random_state=1)
-
-# model=LinearRegression()
-# model.fit(x_train, y_train)
-
-# y_pred=model.predict(x_test)
-
-# #Model coefficients
-# print(f"Intercept (a0): {model.intercept_}")
-# print(f"Slope (a1): {model.coef_}")
-# r2=r2_score(y_test, y_pred)
-
-# #Print evaluation metrics
-# print (f"R-squared Score: ",r2)
-
-# #User input for age
-# user_age = float(input("Enter age to predict salary: "))
-
-# #Predict salary for the given age
-# predicted_salary = model.predict(pd.DataFrame([[user_age]], columns=['age']))
-# print (f"The predicted salary for age {user_age} is:",predicted_salary)
-# plt.scatter (x_test, y_test, color='blue')
-# plt.plot(x_test, y_pred, color='red', linewidth=2, label='Predicted line')
-# plt.scatter (user_age, predicted_salary, color='green', s=100, label='User Prediction')
-# plt.xlabel('Age')
-# plt.ylabel('Salary')
-# plt.title('Simple Linear Regression: Age vs Salary')
-# plt.legend()
-# plt.grid(True)
-plt.show()
-
-5. 
-
-# import pandas as pd
-# import numpy as np
-# import matplotlib.pyplot as plt
-# from sklearn.model_selection import train_test_split
-# from sklearn.linear_model import LinearRegression
-# from sklearn.metrics import mean_squared_error, r2_score
-# from matplotlib.ticker import FuncFormatter
-
-# data = pd.read_csv('house_data.csv')
-# X = data.drop('price', axis=1)
-# y = data['price']
-
-# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,random_state=42)
-# model = LinearRegression().fit(X_train, y_train)
-# y_pred = model.predict(X_test)
-
-# print(f"Mean Squared Error: {mean_squared_error(y_test, y_pred):.2f}")
-# print(f"R^2 Score: {r2_score(y_test, y_pred):.2f}")
-# print(f"Model Coefficients: {model.coef_}")
-# print(f"Model Intercept: {model.intercept_}")
-
-# area = float(input("Enter area (sq ft): "))
-# bedrooms = int(input("Enter number of bedrooms: "))
-# floors = int(input("Enter number of floors: "))
-# age = int(input("Enter age of the house: "))
-# input_data = pd.DataFrame([[area, bedrooms, floors, age]], columns=['area', 'bedrooms', 'floors', 'age'])
-# input_data_encoded = input_data.reindex(columns=X.columns, fill_value=0)
-# predicted_price = model.predict(input_data_encoded)
-
-# print(f"Predicted price for the house: ₹{predicted_price[0]:,.2f}")
-# plt.figure(figsize=(12, 8)) # Adjusted size
-# plt.scatter(y_test, y_pred, alpha=0.7, label="Predicted Prices", color='blue', marker='o')
-# plt.plot([0, max(y_test)], [0, max(y_test)], color='red', linestyle='--', label="Prediction Line")
-# plt.xlabel("Actual Prices (₹)")
-# plt.ylabel("Predicted Prices (₹)")
-# plt.title("Actual vs Predicted House Prices")
-
-# # Use safe formatter instead of set_xticklabels/set_yticklabels
-# formatter = FuncFormatter(lambda x, pos: f'₹{int(x):,}')
-# plt.gca().xaxis.set_major_formatter(formatter)
-# plt.gca().yaxis.set_major_formatter(formatter)
-
-# plt.legend()
-# plt.xlim(0, max(y_test) * 1.1)
-# plt.ylim(0, max(y_pred) * 1.1)
-# # Grid and display
-# plt.grid(True)
-# plt.show()
-
-
-6. 
-
-# # Importing required libraries
-# from sklearn.datasets import load_iris
-# from sklearn.model_selection import train_test_split, GridSearchCV
-# from sklearn.tree import DecisionTreeClassifier
-# from sklearn.metrics import accuracy_score, classification_report
-# import matplotlib.pyplot as plt
-# from sklearn import tree
-
-# # Load the Iris dataset
-# iris = load_iris()
-# X = iris.data # Features
-# y = iris.target # Target labels
-
-# # Split the dataset into training and testing sets (90% train, 10% test)
-# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=42) # 10% test size
+puts "parameter of the circle : #{(2*Math::PI*n).round(2)}"
+ puts "area of the circle : #{(Math::PI*(n**2)).round(2)}"
 
-# # Initialize the Decision Tree classifier with some tuning parameters
-# clf = DecisionTreeClassifier(max_depth=2, min_samples_split=2, min_samples_leaf=1, random_state=42)
-
-# # Fit the classifier on the training data
-# clf.fit(X_train, y_train)
-
-# # Make predictions on the test set
-# y_pred = clf.predict(X_test)
-
-# # Calculate accuracy
-# accuracy = accuracy_score(y_test, y_pred)
-# print(f'Accuracy: {accuracy:.2f}')
-
-# # Print classification report
-# print('Classification Report:')
-# print(classification_report(y_test, y_pred, target_names=iris.target_names))
-
-# # Visualize the Decision Tree
-# plt.figure(figsize=(10, 8))
-# tree.plot_tree(clf, filled=True, feature_names=iris.feature_names,class_names=iris.target_names, rounded=True)
-# plt.title("Decision Tree Visualization")
-# plt.show()
-
-
-
-
-# from sklearn.neighbors import KNeighborsClassifier
-# from sklearn.model_selection import train_test_split
-# from sklearn.datasets import load_iris
-# import random
-
-# data_iris = load_iris()
-# label_target = data_iris.target_names
-# print()
-
-# print("Sample Data from Iris Dataset")
-# print("*"*30)
-# for i in range(10):
-# 	rn = random.randint(0,120)
-# 	print(data_iris.data[rn],"===>",label_target[data_iris.target[rn]])
-
-# X = data_iris.data
-# y = data_iris.target
-# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3,random_state=1)
-
-# print("The Training dataset length: ",len(X_train))
-# print("The Testing dataset length: ",len(X_test))
-# try:
-# 	nn = int(input("Enter number of neighbors :"))
-# 	knn = KNeighborsClassifier(nn)
-# 	knn.fit(X_train, y_train)
-# 	# to display the score
-# 	print("The Score is :",knn.score(X_test, y_test))
-# 	# To get test data from the user
-# 	test_data = input("Enter Test Data :").split(",")
-# 	for i in range(len(test_data)):
-# 		test_data[i] = float(test_data[i])
-# 	print()
-# 	v = knn.predict([test_data])
-# 	print("Predicted output is :",label_target[v])
-# except:
-# 	print("Please supply valid input......")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-price,area,bedrooms,floors,age
-4500000,1500,3,2,5
-7000000,2500,4,3,4
-3000000,1200,2,1,2
-5500000,1800,3,2,4
-9000000,3000,5,4,5
-3500000,1400,3,2,5
-6000000,2200,4,3,1
-10000000,3500,5,4,4
-4000000,1600,3,2,3
-6500000,2000,4,3,4
-
-
-
-
-
-
-
-
-
-age,salary
-22,30000
-25,35000
-30,45000
-35,50000
-40,60000
-45,65000
-50,70000
-55,80000
-
-
-
-Student_NO,Name,Branch,Year,Contact_NO
-1201,Raghu,IT,III,1234
-1202,Sai,IT,III,1234
-1203,Sravan,IT,III,1234
-1204,Karthik,IT,III,1234
-1205,Gaanesh,IT,III,1234
-1206,Vamshi,IT,III,1234
-1207,Shiva,IT,III,1234
-1208,Racha,IT,III,1234
-1209,Abu,IT,III,1234
-1210,Nithish,IT,III,1234
+3.
 
+print " Enter first name: "
+fname = gets.chomp
+print " Enter last name: "
+lname = gets.chomp
 
+name = fname +" " + lname
+
+print "Full Name : \n",name
+
+words = name.split(" ")
+
+reverse = words.reverse.join(" ")
+
+puts "Reversed name : #{reverse}"
+
+reversed_name = words.map{|words|words.reverse}.join(" ")
+print "reversed_name : #{reversed_name}\n"
+
+reverse_full = name.reverse
+print "Reversed :  #{reverse_full}"
+
+
+
+4.
+
+print " Enter file name: "
+fn = gets.chomp
+
+if File.exist?(fn)
+  full_path = File.expand_path(fn)
+  puts "File exist at #{full_path}"
+
+  ex=File.extname(fn)
+
+  if ex == ""
+    puts "no extension found"
+  else
+    puts "file extension  : ",ex
+  end
+end
+
+
+
+5.
+
+
+print "Enter a: "
+a= gets.chomp.to_i   
+print "Enter b: "
+b= gets.chomp.to_i   
+print "Enter c: "
+c= gets.chomp.to_i   
+  
+if a>b and a>c
+  	 puts "greatest number is: #{a} "   
+elsif  b>c   
+	puts "greatest number is: #{b} "  
+else 
+  puts "greatest number is: #{c} "   
+end
+
+
+6.
+
+
+print "Enter the number from which you want odd numbers : "
+n = gets.chomp.to_i
+
+while n>0
+	if n%2 != 0
+		print n," "
+	end
+	n -= 1
+
+end
+
+7.
+
+print "Enter a: "
+a= gets.chomp.to_i   
+print "Enter b: "
+b= gets.chomp.to_i 
+
+if a==20 or b==20
+	puts "true"
+else
+	puts "sum = #{a+b}"
+end
+
+
+8.
+
+print "Enter first temperature : "
+t1 = gets.chomp.to_i
+
+print "Enter Second temperature : "
+t2 = gets.chomp.to_i
+
+if(t1 < 0 && t2>100 ||  t1 > 100 && t2 < 0 )
+    puts "True"
+else 
+  puts "False"
+  end
+
+
+  9.
+  arr = []
+
+print "Enter the number of elements : "
+n = gets.chomp.to_i
+for i in 1..n
+  print "Enter Element #{i} : "
+  arr << gets.chomp.to_i
+end
+
+print arr ,"\n"
+
+arr.push(60)
+arr.insert(2,90)
+arr.unshift(5)
+print arr ,"\n"
+
+
+a = arr.pop
+b = arr.shift
+arr.delete(90)
+print arr ,"\n"
+
+print "Popped element: ", a ,"\n"
+print "Shifted element: ", b ,"\n"
+
+
+print "Element at index 2: ", arr[2] ,"\n"
+
+
+arr[1] = 25
+print arr ,"\n"
+
+
+print "Index of 30: ", arr.index(30) ,"\n"
+print "Include 50?: ", arr.include?(50) ,"\n"
+
+
+print "Length: ", arr.length ,"\n"
+
+
+sorted = arr.sort
+print "Sorted: ", sorted ,"\n"
+
+
+rev = arr.reverse
+print "Reversed: ", rev ,"\n"
+
+
+print "Elements: "
+arr.each do |x|
+  print x ," "
+end
+print "\n"
+
+
+dup = [1,2,2,3,3,4]
+print "Unique: ", dup.uniq ,"\n"
+
+
+arr.clear
+print "After clear: ", arr ,"\n"
+
+
+
+10.
+
+marks = {}
+
+print "Enter the number of Subjects : "
+n = gets.chomp.to_i
+
+for i in 1..n
+  print "Enter subject #{i} name : "
+  subject = gets.chomp
+
+  print "Enter marks of #{subject}: "
+  score = gets.chomp.to_i
+
+  marks[subject] = score
+end
+
+puts "Marks : "
+print marks,"\n"
+
+total_marks = 0
+
+for score in marks.values 
+  total_marks += score
+end
+
+print "Total marks : #{total_marks}"
+
+# "Maths" => 85,  
+#   "Physics" => 89,  
+#   "Chemistry" => 75,  
+#   "Biology" => 95,  
+#   "IT" => 99  
