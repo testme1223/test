@@ -227,3 +227,106 @@ print "Total marks : #{total_marks}"
 #   "Chemistry" => 75,  
 #   "Biology" => 95,  
 #   "IT" => 99  
+
+
+
+tcl : 
+
+
+
+1.
+
+puts "Enter a number : "
+gets stdin num
+
+set fact 1
+
+for {set i 1} {$i<=$num} {incr i} {
+    set fact [expr {$fact * $i}]
+}
+
+puts "Factorial : $fact"
+
+
+2.
+
+set result 1
+for {set i 1} {$i <= 10} {incr i} {
+    set result [expr {$result * $i}]
+}
+puts "Product from 1 to 10 is $result"
+
+
+3.
+
+
+proc compare {a b} {
+    if {$a > $b} {
+        return 1
+    } elseif {$a < $b} {
+        return -1
+    } else  {
+        return 0   
+    }
+}
+
+set list {6 5 3 9 1}
+
+puts "Original List : $list"
+
+set sorted_list [lsort -command compare $list]
+
+puts "Soretd list : $sorted_list" 
+
+
+4.
+
+set mylist {1 2 3}
+lappend mylist 4 5
+
+puts "Traversing list:"
+foreach item $mylist {
+    puts $item
+}
+
+set list2 {6 7 8}
+set newlist [concat $mylist $list2]
+puts "Concatenated list: $newlist"
+
+
+5.
+
+
+set file1 "t.txt"
+set file2 "t1.txt"
+
+set time1 [file mtime $file1]
+set time2 [file mtime $file2]
+
+if {$time1 > $time2} {
+    puts "$file1 is newer"
+} elseif {$time1 < $time2} {
+    puts "$file2 is newer"
+} else {
+    puts "Both files have same modification time"
+}
+
+
+6.
+ 
+
+set src "t.txt"
+set dest "t1.txt"
+
+set in [open $src r]
+set out [open $dest w]
+
+fconfigure $out -translation auto
+
+while {[gets $in line] >= 0} {
+    puts $out $line
+}
+
+close $in
+close $out
+puts "File copied with native translation"
