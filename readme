@@ -137,3 +137,55 @@ tic_tac_toe()
 4.
 
 
+5.
+
+
+
+from collections import deque
+
+def water_jug(m,n,d):
+    queue = deque()
+    queue.append((0,0))
+    visited = set()
+
+    while queue:
+        
+        x,y = queue.popleft()
+        
+        if (x,y) in visited:
+            continue
+        
+        print("Jug 1 : ",x,"Jug 2 : ",y)
+        visited.add((x,y))            
+    
+        if(x == d or y == d):
+            print("Target Reached")   
+
+        next_states = [
+            
+            (m,y),
+            (x,n),
+            (0,n),
+            (m,0),
+            (x - min(x,n-y),y + min(x,n-y)),
+            (x + min(y,n-x),y - min(y,n-x))
+            
+        ]
+
+        for state in next_states:
+            if state not in visited:
+                queue.append(state)
+    
+    print("No Solution")
+
+m = int(input("Enter Jug 1 capacity : "))
+n = int(input("Enter Jug 2 capacity : "))
+d = int(input("Enter the target : "))
+
+water_jug(m,n,d)
+
+
+
+
+
+
