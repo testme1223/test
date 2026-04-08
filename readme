@@ -1,309 +1,430 @@
-1. 
+
+ip = input("Enter numbers separated by commas : ")
+
+nums = [int(num) for num in ip.split(',')]
+
+n = len(nums)
+
+mean = sum(nums)/n
+
+print("Mean : ",round(mean,2))
+
+num = sorted(nums)
+
+if(n%2 == 0):
+    m = (num[n//2-1]+num[n//2])/2
+else :
+    m = num[n//2]
+
+print("Median : ",m)
+
+freq = {}
+high = 0
+
+for i in nums :
+    if i in freq:
+        freq[i] += 1
+    else:
+        freq[i] = 1
+    if(high < freq[i]):
+        high = freq[i]
+
+modes = {k for k, v in freq.items() if v == high}
+
+l = len(modes)
+
+if(l < n):
+    for i in modes:
+        print(i,end=" ")
+else :
+    print("NO mode available")
 
 
-def bfs(graph,s):
+var = sum((k-mean)**2 for k in nums)/n
+stddev = var ** 0.5
 
-    queue = [s]
-    visited = set()
-    visited.add(s)
+print("var : ",var)
+print("std : ",round(stddev,2))
 
-    length = len(graph)
 
-    while len(queue) != 0:
-
-        a = queue.pop(0)
-        print(a,end = " ")
-
-        for i in range(length):
-            if graph[a][i] == 1 and i not in visited:
-                queue.append(i)
-                visited.add(i)
-    
-
-def main():
-    graph = []
-
-    n = int(input("Enter the number of vertices : "))
-
-    print("Enter the adjacency matrix row wise : ")
-
-    for i in range(n):
-        row = list(map(int,input().split()))
-        graph.append(row)
-
-    print("Enter the starting vertex : ")
-    s = int(input())
-
-    print("BFS TRAVERSAL : ")
-    bfs(graph,s)
-
-main()    
-    
 
 2.
 
 
+#1. Statistics
 
-def dfs(graph,s):
-    
-    stack = [s]
-    visited = set()
-    length = len(graph)
-    
-    while len(stack) != 0:
-        
-        a = stack.pop()
-        if a not in visited:
-            visited.add(a)
-            print(a,end=" ")
-        
-        for i in range(length):
-            if graph[a][i] == 1 and i not in visited:
-                stack.append(i)
+import statistics
+# Input data from user
 
-def main():
-    graph = []
+data=input("Enter data separated by comma:")
+data=[int(x) for x in data.split(',')]
 
-    print("Enter the number of vertices : ")
-    n = int(input())
+# Compute Mean
+mean=statistics.mean(data)
+# Compute Median
+median=statistics.median(data)
+# Compute Mode
+mode=statistics.mode(data)
+# Compute Standard Deviation
+std_dev=statistics.stdev(data)
+# Compute Variance
+variance=statistics.variance(data)
+# Output results
+print(f"Mean={mean}")
+print(f"Median={median}")
+print(f"Mode={mode}")
+print("std dev : ",round(std_dev,3))
+print(f"Variance={variance}")
 
-    print("Enter the adjacency matrix row wise :")
-    for i in range(n):
-        row = list(map(int,input().split()))
-        graph.append(row)
 
-    s = int(input("Enter the starting vertex : "))
 
-    print("DFS TRAVERSAL : ")
-    dfs(graph,s)
+#2. Math
 
-main()
+
+import math
+x=int(input("Enter a number:"))
+result1=math.ceil(x)
+result2=math.factorial(x)
+result3=math.exp(x)
+result4=math.sqrt(x)
+result5=math.floor(x)
+n1=int(input("Enter number1:"))
+n2=int(input("Enter number2:"))
+result6=math.gcd(n1,n2)
+result7=math.pow(n1,n2)
+angle=int(input("Enter an angle:"))
+a=math.radians(angle)
+result8=math.sin(a)
+result9=math.cos(a)
+result10=math.tan(a)
+print(f"Using math.ceil({x}): {result1}")
+print(f"Using math.factorial({x}):{result2}")
+print(f"Using math.exp({x}):{result3}")
+print(f"Using math.sqrt({x}):{result4}")
+print(f"Using math.floor({x}):{result5}")
+print(f"Using math.gcd({n1},{n2}):{result6}")
+print(f"Using math.pow({n1},{n2}):{result7}")
+print(f"Using math.sin({angle}):{result8}")
+print(f"Using math.cos({angle}):{result9}")
+print(f"Using math.tan({angle}):{result10:.15f}")
+
+
+#3. numpy
+
+
+import numpy as np
+
+rows=int(input("Enter number of rows:"))
+cols=int(input("Enter number of columns:"))
+
+elements = list(map(float,input("Enter elements : ",).split()))
+
+user_array = np.array(elements).reshape(rows,cols)
+
+ones_array=np.ones((rows, cols))
+zeros_array=np.zeros((rows, cols))
+
+transposed_array=np.transpose(user_array)
+
+reshaped_array = user_array.reshape(rows * cols)
+min_value=np.min(elements)
+max_value=np.max(elements)
+
+
+print("User Array:\n",user_array)
+print("Ones Array:\n",ones_array)
+print("Zeros Array:\n",zeros_array)
+print("Transposed Array:\n",transposed_array)
+print("Reshaped Array (flattened):\n",reshaped_array)
+print("Minimum Value:",min_value)
+print("Maximum Value:",max_value)
+
+
+
+
+#4. Scipy
+
+
+import numpy as np
+from scipy import constants,special
+from scipy.linalg import det
+
+print(constants.minute, constants.hour, constants.inch, constants.liter)
+
+# Exponent
+x = float(input("Enter x: "))
+print("10^x =", special.exp10(x))
+
+# Angle
+a = float(input("Enter angle: "))
+print("sin =", special.sindg(a))
+print("cos =", special.cosdg(a))
+
+# Matrix
+r = int(input("Rows: "))
+c = int(input("Cols: "))
+
+m = list(map(float,input("Enter elements : ").split()))
+m = np.array(m).reshape(r,c)
+
+if r == c:
+    print("Determinant =", det(m))
+else:
+    print("Not square matrix")
 
 
 3.
 
 
-def tic_tac_toe():
-    board = [" "] *9
+#1. pandas
 
-    def print_board():
-        for i in range(0, 9, 3):
-            print(board[i:i+3])
-    
-    def check_win(p):
-        wins = [(0,1,2),(3,4,5),(6,7,8),
-                (0,3,6),(1,4,7),(2,5,8),
-                (0,4,8),(2,4,6)]
-        return any(board[a] == board[b] == board[c] == p for a,b,c in wins)
+import pandas as pd
+
+df = pd.read_csv('student.csv')
+print(df)
+print(df.loc[[0,1]])
+print(df.head(2))
+print(df.tail(2))
+print(df.isnull())
+print(df.info())
 
 
-    move = 0
-    player = 'X'
-    
-    while move < 9:
-        print_board()
-        try :
-            move = int(input(player + " move (0-8) : "))
-        except:
-             print("Enter a number!")
-             continue
-        
-        if move > 8 or move < 0:
-             print("Enter between 0 and 8!")
-             continue
-        
-        if board[move] != " ":
-            print("Cell already Occupied")
-            continue
-    
-            
-        board[move] = player
-        move += 1
-        
-        if (check_win(player)):
-            print_board()
-            print(player, "wins!")
-            return
-        
-        player = 'O' if player == 'X' else 'X'
-        
-    
 
-    print_board()
-    print("DRAW")
-            
-tic_tac_toe()
+
+#2. MatPlotLib
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Taking user inputs for x and y coordinates
+x_input = input("Enter the x coordinates separated by spaces: ")
+y_input = input("Enter the y coordinates separated by spaces: ")
+
+# Splitting the input string into a list of strings, then converting them to float
+x = np.array([float(i) for i in x_input.split()])
+y = np.array([float(i) for i in y_input.split()])
+
+# Checking if the number of x and y coordinates match
+if len(x) != len(y):
+	print("Error: The number of x and y coordinates must be the same.")
+else:
+	plt.plot(x,y,marker = "o")
+	plt.ylabel("yaxis")
+	plt.title("User ip")
+	plt.xlabel("xaxis")
+	plt.grid(True)
+	plt.show()
+
 
 4.
 
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
 
-from collections import deque
+data = pd.read_csv('salary_data.csv')
 
-goal = (1,2,3,4,5,6,7,8,0)
+x = data[['age']]
+y = data['salary']
 
-def print_board(state):
-    for i in range(0,9,3):
-        print(state[i:i+3])
-    print()
-    
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.2,random_state=1)
 
-
-def get_next(state):
-    res = []
-    i = state.index(0)
-    x,y = divmod(i,3)    
-
-    for k,l in [(-1,0),(1,0),(0,-1),(0,1)]:
-        nx,ny = k +x,l+y
-        if 0 <= nx < 3 and  0 <= ny < 3:
-            ni = nx*3 + ny
-            new = list(state)
-            new[i],new[ni] = new[ni],new[i]
-            res.append(tuple(new))
-    return res
-        
-def bfs(start):
-    q = deque([(start, [start])])
-    visited = set([start])
-    
-    while q :
-        state, path = q.popleft()
-        
-        if state == goal:
-            print("Solution found")
-            for i in path :
-                print_board(i)
-            print("Total Steps : ",len(path)-1)
-            return
-        for i in get_next(state):
-            if i not in visited :
-                visited.add(i)
-                q.append((i,path+[i]))
-    print("No Solution")
-
-            
-start = tuple(map(int,input("Enter 9 number from 0-8 : ").split()))
-bfs(start)
+model = LinearRegression()
+model.fit(x_train,y_train)
+y_pred = model.predict(x_test)
 
 
+print("Slope : ",model.coef_)
+print("Intercept : ",model.intercept_)
+r2 = r2_score(y_test,y_pred)
+
+print(r2)
+
+age = float(input("Enter the age to predict salary : "))
+
+pred_sal = model.predict([[age]])
+print("Predicted Salary : ",pred_sal[0])
 
 
+plt.scatter(x_test,y_test,color = "blue")
+plt.plot(x_test,y_pred,color = "red", linewidth=2,label="Predicted line")
+plt.scatter(age,pred_sal[0],color = 'green',label="User Prediction",s = 200)
+plt.grid(True)
+plt.legend()
+plt.xlabel("Age")
+plt.ylabel("Salary")
+plt.title("Prediction")
+plt.show()
 
 5.
 
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score, mean_squared_error
 
+data = pd.read_csv('house_data.csv')
+X = data.drop('price', axis=1)
+y = data['price']
 
-from collections import deque
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+model = LinearRegression().fit(X_train, y_train)
+y_pred = model.predict(X_test)
 
-def water_jug(m,n,d):
-    queue = deque()
-    queue.append((0,0))
-    visited = set()
+print("MSE:", mean_squared_error(y_test, y_pred))
+print("R2:", r2_score(y_test, y_pred))
 
-    while queue:
-        
-        x,y = queue.popleft()
-        
-        if (x,y) in visited:
-            continue
-        
-        print("Jug 1 : ",x,"Jug 2 : ",y)
-        visited.add((x,y))            
-    
-        if(x == d or y == d):
-            print("Target Reached")   
+area = float(input("Area: "))
+bed = int(input("Bedrooms: "))
+floors = int(input("Floors: "))
+age = int(input("Age: "))
 
-        next_states = [
-            
-            (m,y),
-            (x,n),
-            (0,n),
-            (m,0),
-            (x - min(x,n-y),y + min(x,n-y)),
-            (x + min(y,n-x),y - min(y,n-x))
-            
-        ]
+pred = model.predict([[area, bed, floors, age]])
+print("Predicted Price:", pred[0])
 
-        for state in next_states:
-            if state not in visited:
-                queue.append(state)
-    
-    print("No Solution")
+#plt.figure(figsize=(8, 6)) 
+plt.scatter(y_test, y_pred, alpha=0.7, label="Predicted Prices", color='blue', marker='o')
+plt.plot([0,max(y_test)],[0,max(y_test)], color='red', linestyle='--', label="Prediction Line")
+plt.xlabel("Actual Prices (₹)")
+plt.ylabel("Predicted Prices (₹)")
+plt.title("Actual vs Predicted House Prices")
+plt.legend()
+plt.grid(True)
+plt.show()
 
-m = int(input("Enter Jug 1 capacity : "))
-n = int(input("Enter Jug 2 capacity : "))
-d = int(input("Enter the target : "))
-
-water_jug(m,n,d)
 
 6.
 
-import itertools
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score,classification_report
+from sklearn import tree
+import matplotlib.pyplot as plt
 
-def tsp(graph,s):
-    
-    n = len(graph)
-    min_cost = float('inf')
-    cities = list(range(n))
-    cities.remove(s)
-    best_path = []
-    
-    for i in itertools.permutations(cities):
-        path = (s,) + i + (s,)
-        cost = 0
-    
-    for i in range(len(path)-1):
-        cost += graph[path[i]][path[i+1]]
-    
-    if cost < min_cost:
-        min_cost = cost
-        best_path = path
-        
-        
-    print("Mnimum Cost : ",min_cost)
-    print("Best Path : ",best_path)
-    
 
-graph = []
+# Load data
+data = load_iris()
+X = data.data
+y = data.target
 
-n = int(input("Enter the number of vertices : "))
 
-print("Enter the adjacency matrix row wise : ")
+# Split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
-for i in range(n):
-    row = list(map(int,input().split()))
-    graph.append(row)
+# Model
+model = DecisionTreeClassifier(max_depth=2)
+model.fit(X_train, y_train)
 
-print("Enter the starting vertex : ")
-s = int(input())
+# Predict
+y_pred = model.predict(X_test)
 
-tsp(graph,s)
+# Accuracy
+print("Accuracy:", accuracy_score(y_test, y_pred))
 
+print('Classification Report:')
+print(classification_report(y_test, y_pred, target_names=data.target_names))
+
+# Tree plot
+tree.plot_tree(model)
+plt.show()
 
 
 7.
 
-def toh(n,S,A,D):
-    
-    if n == 1:
-        print("Move disk 1 from ",S, " to ",D)
-        return
-    
-    toh(n-1,S,D,A)
-    print("Move disk",n,"from ",S, " to ",D)
-    toh(n-1,A,S,D)
-    
-n = int(input("Enter the number of disks : "))
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import load_iris
 
-toh(n,'A','B','C')
+# Load dataset
+data = load_iris()
+X = data.data
+y = data.target
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
+
+# Input k value
+
+k = int(input("Enter the number of neighbours : "))
+
+model = KNeighborsClassifier(n_neighbors = k)
+model.fir(X_train,y_train)
+
+print("Accuracy : ",model.score(X_test,y_test))
+
+# User input
+user = list(map(float, input("Enter 4 values (comma separated): ").split(",")))
+
+# Prediction
+pred = model.predict([user])
+
+# Output
+print("Predicted class:", data.target_names[pred][0])
 
 
 
+8.
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
+# Load data
+data = pd.read_csv("study_hours.csv")
+X = data[['Study Hours']]
+y = data['Exam Result']
 
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
+# Train model
+model = LogisticRegression()
+model.fit(X_train, y_train)
 
+# Predict & accuracy
+y_pred = model.predict(X_test)
+print("Accuracy:", accuracy_score(y_test, y_pred))
 
+# Plot
+x_range = np.linspace(X.min(), X.max(), 100).reshape(-1, 1)
+y_prob = model.predict_proba(x_range)[:, 1]
 
+plt.scatter(X, y)
+plt.plot(x_range, y_prob)
+plt.xlabel("Study Hours")
+plt.ylabel("Exam Result")
+plt.show()
 
+9.
+
+#Necessary Libraries
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn.datasets import make_blobs
+
+#Generate Data
+X, _ = make_blobs(n_samples = 300, centers = 4 , cluster_std = 0.60,random_state = 0)
+
+#Plot the data points
+plt.scatter(X[:,0],X[:,1])
+plt.title("Data Points")
+plt.show()
+
+kmeans = KMeans(n_clusters=4)
+labels = kmeans.fit_predict(X)
+centers = kmeans.cluster_centers_
+
+#been assigned to.
+#Plot the clustered data
+plt.scatter(X[:,0],X[:,1],c = labels)
+plt.scatter(centers[:,0],centers[:,1],alpha = 0.75,s=200,color = 'red')
+plt.title("Clustered Data")
+plt.show()
 
